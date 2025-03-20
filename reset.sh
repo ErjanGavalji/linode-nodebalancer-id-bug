@@ -16,6 +16,10 @@ fi
 
 
 export KUBECONFIG=${kubeConfig}
+kubectl delete -f https://github.com/cert-manager/cert-manager/releases/download/v1.17.0/cert-manager.yaml
+sleep 60
+kubectl delete -f ./app.yml
+sleep 60
 kubectl delete namespace cert-manager
 sleep 15
 kubectl delete namespace nginx-ingress
