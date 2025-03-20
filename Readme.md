@@ -29,3 +29,19 @@ the external IP.
 
 It has the form of `172-233-103-117.ip.linodeusercontent.com` instead of
 `172.233.103.117`
+
+The problem is caused by the annotation:
+service.beta.kubernetes.io/linode-loadbalancer-hostname-only-ingress: "true" ,
+which, as explained in the
+[LKE Load Balancing article](https://techdocs.akamai.com/cloud-computing/docs/get-started-with-load-balancing-on-an-lke-cluster).
+
+> Annotation Suffix: hostname-only-ingress
+
+> Values: Boolean
+
+> Default Value: false
+
+> Description: When true, the LoadBalancerStatus for the service will only
+> contain the Hostname. This is useful for bypassing kube-proxy's rerouting of
+> in-cluster requests originally intended for the external LoadBalancer to the
+> service's constituent Pod IP addresses.
