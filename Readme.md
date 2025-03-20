@@ -21,4 +21,6 @@ ID is specified.
 Once complete, check the IP address of the service via the Linode Web Console
 and set it as an A record to your domain name.
 
-This branch demonstrates that the external IP is not presented when the
+In this branch, the kubernetes loadbalancer service properly reports its
+external IP addres via the command of
+`kubectl get service -n nginx-ingress my-load-balancer`.
