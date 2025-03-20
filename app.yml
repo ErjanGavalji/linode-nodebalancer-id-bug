@@ -18,7 +18,7 @@ data:
       console.log(`Server running at http://localhost:${port}`);
     });
   start.sh: |
-    #!/bin/sh
+    #!/bin/bash
     cp /configmap/server.mjs /app/server.mjs
     chmod +x /app/server.mjs
     cd /app
@@ -44,14 +44,17 @@ spec:
       labels:
         app: nodejs-app
     spec:
-      volumes:
-        - name: config-volume
-          configMap:
-            name: nodejs-config
       initContainers:
         - name: init-copy
           image: busybox
-          command: ["sh", "-c", "cp -r /configmap /app"]
+          command: 
+            - "sh"
+            - "-c"
+            - |
+              cp -L /configmap/start.sh /app/start.sh
+              cp -L /configmap/server.mjs /app/server.mjs
+              chmod u+x /app/start.sh
+              chmod -R 777 /app
           volumeMounts:
             - name: config-volume
               mountPath: /configmap
@@ -60,11 +63,15 @@ spec:
       containers:
         - name: nodejs-container
           image: node:22.14.0
-          command: ["sh", "/app/start.sh"]
+          command:
+            - "/app/start.sh"
           volumeMounts:
             - name: app-volume
               mountPath: /app
       volumes:
+        - name: config-volume
+          configMap:
+            name: nodejs-config
         - name: app-volume
           emptyDir: {}
 
