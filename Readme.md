@@ -18,4 +18,11 @@ ID is specified.
 ./setup.sh <kubeconfig file> <domain name>
 ```
 
-Once complete, check the IP address of the service via
+Once complete, check the IP address of the service via the Linode Web Console
+and set it as an A record to your domain name.
+
+There are several problems here:
+
+1. The load balancer service does not present the external IP address of the
+   NodeBalancer.
+2. The load balancer never gets created.

@@ -66,14 +66,6 @@ kubectl apply -f ./app.yml
 # Cert Manager
 kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.17.0/cert-manager.yaml
 
-kubectl apply -f ./staging-issuer.yml
-kubectl apply -f ./prod-issuer.yml
-
-# Replace the %#DOMAINNAME#% entry in the my-ingress.yml.template file with the domain name and appy:
-cat ${scriptDir}/my-ingress.yml.template | ${sedCmd} "s|%#DOMAINNAME#%|${domainName}|g" | kubectl apply -f -
-
-kubectl apply -f ${scriptDir}/load_balancer.yml
-
 # Wait for the cert-manager-webhook pod to be running:
 echo "Waiting for cert-manager-webhook pod to be running... (will timeout in 5 minutes if unsuccessful)"
 sleep 30
@@ -81,4 +73,12 @@ kubectl wait --for=condition=Ready pod -l app=webhook -n cert-manager --timeout=
 
 # Wait a bit more:
 sleep 30
+
+kubectl apply -f ./staging-issuer.yml
+kubectl apply -f ./prod-issuer.yml
+
+# Replace the %#DOMAINNAME#% entry in the my-ingress.yml.template file with the domain name and appy:
+cat ${scriptDir}/my-ingress.yml.template | ${sedCmd} "s|%#DOMAINNAME#%|${domainName}|g" | kubectl apply -f -
+
+kubectl apply -f ${scriptDir}/load_balancer.yml
 
