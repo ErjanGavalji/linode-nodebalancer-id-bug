@@ -34,11 +34,11 @@ function show_progress() {
 
 export KUBECONFIG=${kubeConfig}
 kubectl delete -f https://github.com/cert-manager/cert-manager/releases/download/v1.17.0/cert-manager.yaml
-show_progress 60
+show_progress 60 1
 kubectl delete -f ./app.yml
-show_progress 60
+show_progress 60 1
 kubectl delete namespace cert-manager
-show_progress 15
+show_progress 15 1
 kubectl delete namespace nginx-ingress
-show_progress 15
+show_progress 15 1
 kubectl delete namespace main-app
