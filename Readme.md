@@ -34,3 +34,5 @@ stays at a pending state. All we do is set a nodebalancer id as described in the
 > Description: The ID of the NodeBalancer to front the service. When not
 > specified, a new NodeBalancer will be created. This can be configured on
 > service creation or patching.
+
+Checking the Linode Web Console, the NodeBalancer is not created at all.
