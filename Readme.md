@@ -21,4 +21,11 @@ ID is specified.
 Once complete, check the IP address of the service via the Linode Web Console
 and set it as an A record to your domain name.
 
-This branch demonstrates that the external IP is not presented when the
+This branch demonstrates that the external IP presented when the loadbalancer
+service printed is wrong.
+
+Use the command `kubectl get service -n nginx-ingress my-load-balancer` to print
+the external IP.
+
+It has the form of `172-233-103-117.ip.linodeusercontent.com` instead of
+`172.233.103.117`
