@@ -1,0 +1,19 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: nginx-config
+  namespace: nginx-ingress
+data:
+  proxy-protocol: "False"
+  real-ip-header: "proxy_protocol"
+  real-ip-recursive: "true"
+  set-real-ip-from: "192.168.255.0/24"
+  client-max-body-size: "5m"
+  http2: "true"
+  http-snippets: |
+    gzip on;
+    gzip_comp_level 5;
+    gzip_min_length 256;
+    gzip_proxied any;
+    gzip_vary on;
+    gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript;

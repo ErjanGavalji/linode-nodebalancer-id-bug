@@ -6,6 +6,7 @@ ID is specified.
 ## Prerequisites
 
 1. kubectl installed
+2. A domain name that you can manage
 
 ## Steps to reproduce
 
@@ -14,5 +15,7 @@ ID is specified.
 3. Run the following command to create a simple application with a NodeBalancer:
 
 ```
-./setup.sh <kubeconfig file>
+./setup.sh <kubeconfig file> <domain name>
 ```
+
+Once complete, check the IP address of the service via

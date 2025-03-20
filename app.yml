@@ -1,6 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
+  namespace: main-app
   name: nodejs-config
 data:
   server.mjs: |
@@ -29,7 +30,10 @@ data:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  namespace: main-app
   name: nodejs-app
+  labels:
+    app: nodejs-app
 spec:
   replicas: 1
   selector:
@@ -64,3 +68,17 @@ spec:
         - name: app-volume
           emptyDir: {}
 
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: nodejs-app-service
+  namespace: main-app
+spec:
+  selector:
+    app: nodejs-app
+  ports:
+  - protocol: TCP
+    port: 3000
+    targetPort: 3000
