@@ -59,7 +59,7 @@ spec:
               mountPath: /app
       containers:
         - name: nodejs-container
-          image: node:18
+          image: node:22.14.0
           command: ["sh", "/app/start.sh"]
           volumeMounts:
             - name: app-volume
