@@ -9,7 +9,7 @@ metadata:
     service.beta.kubernetes.io/linode-loadbalancer-default-proxy-protocol: "none"
     service.beta.kubernetes.io/linode-loadbalancer-preserve: "true"
     #    service.beta.kubernetes.io/linode-loadbalancer-hostname-only-ingress: "true"
-    service.beta.kubernetes.io/linode-loadbalancer-nodebalancer-id: "mynbid"
+    service.beta.kubernetes.io/linode-loadbalancer-nodebalancer-id: "8887772223"
   namespace: nginx-ingress
 spec:
   externalTrafficPolicy: Local
